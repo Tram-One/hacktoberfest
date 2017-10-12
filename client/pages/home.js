@@ -12,7 +12,7 @@ const getOrFetchIssues = (store, actions) => {
     case 'LOADING':
       return 'loading...'
     case 'LOADED':
-      issuesDOM = store.issuesStore.issues
+      const issuesDOM = store.issuesStore.issues
         .map(issue => html`<issue
           title=${issue.title} url=${issue.url}
           difficulty=${issue.difficulty}>

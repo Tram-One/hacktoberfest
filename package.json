@@ -4,8 +4,10 @@
   "scripts": {
     "start:server": "node server/main.js",
     "start:client": "budo ./client/main.js:bundle.js --pushstate --dir ./client/public --live",
-    "prebuild:client": "cp -r public/ dist",
-    "build:client": "browserify ./client/main.js -o ./client/dist/bundle.js -t [ babelify --presets [ env ] ]",
+    "prebuild:client": "cp -r ./client/public/ dist",
+    "build:client": "browserify ./client/main.js -o ./dist/bundle.js -t [ babelify --presets [ env ] ]",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist -b gh-pages",
     "test:client": "jasmine ./client/specs/specs.js"
   },
   "keywords": [
