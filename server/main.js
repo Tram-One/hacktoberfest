@@ -1,16 +1,19 @@
 const express = require('express')
 const fetch = require('node-fetch')
-const app = express()
-const blob = {"query":"{ organization(login:\"Tram-One\") { name repositories(first:10) { nodes { name issues(states:[OPEN], first:20) { nodes { title url labels(first:5) { nodes { name } } } } } } }}","variables":null,"operationName":null}
-const url = 'https://api.github.com/graphql'
-const token = ''
+const cors = require('cors')
 
+const graphqlQuery = {"query":"{ organization(login:\"Tram-One\") { name repositories(first:10) { nodes { name issues(states:[OPEN], first:20) { nodes { title url labels(first:5) { nodes { name } } } } } } }}","variables":null,"operationName":null}
+const url = 'https://api.github.com/graphql'
+const auth = 'Bearer <TOKEN>'
+
+const app = express()
+app.use(cors())
 
 app.get('/issues', (req, res) => {
   fetch(url, {
     method: 'POST',
-    headers: {'Authorization': token},
-    body: JSON.stringify(blob),
+    headers: {'Authorization': auth},
+    body: JSON.stringify(graphqlQuery),
   }).then(response => response.json())
     .then(response => {
       const repos = response.data.organization.repositories.nodes
@@ -31,6 +34,6 @@ app.get('/issues', (req, res) => {
     })
 })
 
-app.listen(3001, () => {
-  console.log('Example app listening on port 3001!')
+app.listen(3055, () => {
+  console.log('Example app listening on port 3055!')
 })
