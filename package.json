@@ -1,0 +1,22 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "scripts": {
+    "start:client": "budo ./client/main.js:bundle.js --pushstate --dir ./client/public --live",
+    "prebuild:client": "cp -r public/ dist",
+    "build:client": "browserify ./client/main.js -o ./client/dist/bundle.js -t [ babelify --presets [ env ] ]",
+    "test:client": "jasmine ./client/specs/specs.js"
+  },
+  "keywords": [
+    "tram-one"
+  ],
+  "dependencies": {
+    "babel-preset-env": "^1.6.0",
+    "babelify": "^7.3.0",
+    "browserify": "^14.4.0",
+    "budo": "^10.0.4",
+    "jasmine": "^2.8.0",
+    "node-fetch": "^1.7.3",
+    "tram-one": "^2.0.0"
+  }
+}
