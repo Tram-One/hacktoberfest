@@ -76,7 +76,7 @@ module.exports = function (attrs) {
 
 var Tram = require('tram-one');
 
-var app = new Tram();
+var app = new Tram({ defaultRoute: '/' });
 app.addRoute('/', require('./pages/home'));
 app.addActions({ issuesStore: require('./actions/issues') });
 app.start('.main');
