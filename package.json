@@ -6,7 +6,7 @@
     "start:client": "budo ./client/main.js:bundle.js --pushstate --dir ./client/public --live",
     "prebuild:client": "cp -r ./client/public/ dist",
     "build:client": "browserify ./client/main.js -o ./dist/bundle.js -t [ babelify --presets [ env ] ]",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build:client",
     "deploy": "gh-pages -d dist -b gh-pages",
     "test:client": "jasmine ./client/specs/specs.js"
   },
